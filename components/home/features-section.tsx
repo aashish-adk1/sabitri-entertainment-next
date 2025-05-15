@@ -86,7 +86,7 @@ const FeatureCard: React.FC<FeatureCardProps> = ({ icon: Icon, title, descriptio
       transition: {
         duration: 3,
         repeat: Infinity,
-        repeatType: "reverse" as "reverse", 
+        repeatType: "reverse" as const,
         ease: "easeInOut"
       }
     }

@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from "react";
-import { motion, useMotionValue, useTransform } from "framer-motion";
+import { motion, useMotionValue, useTransform, MotionValue, Transition } from "framer-motion";
 import { 
   Film, 
   Music, 
@@ -7,6 +7,7 @@ import {
   Tv2, 
   Ticket 
 } from "lucide-react";
+import Image from "next/image";
 
 // Customized items with theme-matching content
 const DEFAULT_ITEMS = [
@@ -57,6 +58,109 @@ const VELOCITY_THRESHOLD = 500;
 const GAP = 16;
 const SPRING_OPTIONS = { type: "spring", stiffness: 300, damping: 30 };
 
+// Separate component for carousel item to solve the hooks issue
+type CarouselItemType = {
+  title: string;
+  description: string;
+  id: number;
+  icon: React.ReactNode;
+  color: string;
+  imageUrl: string;
+};
+
+const CarouselItem = ({ 
+  item, 
+  index, 
+  x, 
+  itemWidth, 
+  trackItemOffset, 
+  effectiveTransition 
+}: { 
+  item: CarouselItemType; 
+  index: number; 
+  x: MotionValue<number>; 
+  itemWidth: number; 
+  trackItemOffset: number; 
+  effectiveTransition: Transition | undefined; 
+}) => {
+  // Move useTransform hook to the top level of this component
+  const range = [
+    -(index + 1) * trackItemOffset,
+    -index * trackItemOffset,
+    -(index - 1) * trackItemOffset,
+  ];
+  const outputRange = [90, 0, -90];
+  const rotateY = useTransform(x, range, outputRange, { clamp: false });
+
+  return (
+    <motion.div
+      key={index}
+      className="relative shrink-0 flex flex-col w-full h-full rounded-2xl overflow-hidden cursor-grab active:cursor-grabbing bg-white/10 dark:bg-zinc-800/30 backdrop-blur-sm border border-white/20 dark:border-zinc-700/40"
+      style={{
+        width: itemWidth,
+        rotateY: rotateY,
+      }}
+      transition={effectiveTransition}
+      whileHover={{ scale: 1.02 }}
+      whileTap={{ scale: 0.98 }}
+    >
+      {/* Image Section */}
+      <div className="relative w-full h-1/2 overflow-hidden">
+        <div className={`absolute inset-0 bg-gradient-to-br ${item.color} opacity-90`} />
+        <Image
+          src={item.imageUrl}
+          alt={item.title}
+          width={400}
+          height={300}
+          className="w-full h-full object-cover opacity-60 mix-blend-overlay"
+        />
+        
+        {/* Icon with floating effect */}
+        <motion.div 
+          className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/20 dark:bg-zinc-800/40 backdrop-blur-md flex items-center justify-center"
+          animate={{ 
+            y: [0, -5, 0],
+          }}
+          transition={{
+            duration: 3,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: index * 0.2
+          }}
+        >
+          {item.icon}
+        </motion.div>
+      </div>
+      
+      {/* Content Section */}
+      <div className="p-5 flex flex-col justify-between h-1/2">
+        <div>
+          <h3 className="mb-2 font-bold text-lg bg-gradient-to-r from-blue-400 to-indigo-500 bg-clip-text text-transparent dark:from-blue-300 dark:to-indigo-400">
+            {item.title}
+          </h3>
+          <p className="text-sm text-zinc-700 dark:text-zinc-300">
+            {item.description}
+          </p>
+        </div>
+        
+        {/* Interactive Button */}
+        <motion.button
+          className="mt-4 px-4 py-2 rounded-full bg-gradient-to-r from-blue-500 to-indigo-600 text-white text-sm font-medium flex items-center justify-center gap-2 group overflow-hidden relative"
+          whileHover={{ scale: 1.03 }}
+          whileTap={{ scale: 0.97 }}
+        >
+          <span className="relative z-10">Explore</span>
+          <span className="absolute top-0 right-0 w-12 h-full bg-white/20 skew-x-[-18deg] transform -translate-x-36 group-hover:translate-x-36 transition-transform duration-700"></span>
+        </motion.button>
+      </div>
+      
+      {/* Decorative Elements */}
+      <div className="absolute bottom-3 left-3 w-12 h-1 rounded-full bg-gradient-to-r from-blue-400/40 to-indigo-500/40"></div>
+      <div className="absolute top-3 left-3 w-1 h-12 rounded-full bg-gradient-to-b from-blue-400/40 to-indigo-500/40"></div>
+    </motion.div>
+  );
+};
+
 export default function Carousel({
   items = DEFAULT_ITEMS,
   baseWidth = 300,
@@ -64,7 +168,6 @@ export default function Carousel({
   autoplayDelay = 3000,
   pauseOnHover = false,
   loop = false,
-  round = false,
 }) {
   const containerPadding = 16;
   const itemWidth = baseWidth - containerPadding * 2;
@@ -116,7 +219,7 @@ export default function Carousel({
     pauseOnHover,
   ]);
 
-  const effectiveTransition = isResetting ? { duration: 0 } : SPRING_OPTIONS;
+  const effectiveTransition: Transition | undefined = isResetting ? { duration: 0 } : SPRING_OPTIONS;
 
   const handleAnimationComplete = () => {
     if (loop && currentIndex === carouselItems.length - 1) {
@@ -127,7 +230,12 @@ export default function Carousel({
     }
   };
 
-  const handleDragEnd = (_: any, info: { offset: { x: number }; velocity: { x: number } }) => {
+  interface DragEndInfo {
+    offset: { x: number; y: number };
+    velocity: { x: number; y: number };
+  }
+
+  const handleDragEnd = (_:unknown, info: DragEndInfo) => {
     const offset = info.offset.x;
     const velocity = info.velocity.x;
     
@@ -178,81 +286,17 @@ export default function Carousel({
           transition={effectiveTransition}
           onAnimationComplete={handleAnimationComplete}
         >
-          {carouselItems.map((item, index) => {
-            const range = [
-              -(index + 1) * trackItemOffset,
-              -index * trackItemOffset,
-              -(index - 1) * trackItemOffset,
-            ];
-            const outputRange = [90, 0, -90];
-            const rotateY = useTransform(x, range, outputRange, { clamp: false });
-            
-            return (
-              <motion.div
-                key={index}
-                className="relative shrink-0 flex flex-col w-full h-full rounded-2xl overflow-hidden cursor-grab active:cursor-grabbing bg-white/10 dark:bg-zinc-800/30 backdrop-blur-sm border border-white/20 dark:border-zinc-700/40"
-                style={{
-                  width: itemWidth,
-                  rotateY: rotateY,
-                }}
-                transition={effectiveTransition}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                {/* Image Section */}
-                <div className="relative w-full h-1/2 overflow-hidden">
-                  <div className={`absolute inset-0 bg-gradient-to-br ${item.color} opacity-90`} />
-                  <img
-                    src={item.imageUrl}
-                    alt={item.title}
-                    className="w-full h-full object-cover opacity-60 mix-blend-overlay"
-                  />
-                  
-                  {/* Icon with floating effect */}
-                  <motion.div 
-                    className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/20 dark:bg-zinc-800/40 backdrop-blur-md flex items-center justify-center"
-                    animate={{ 
-                      y: [0, -5, 0],
-                    }}
-                    transition={{
-                      duration: 3,
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                      delay: index * 0.2
-                    }}
-                  >
-                    {item.icon}
-                  </motion.div>
-                </div>
-                
-                {/* Content Section */}
-                <div className="p-5 flex flex-col justify-between h-1/2">
-                  <div>
-                    <h3 className="mb-2 font-bold text-lg bg-gradient-to-r from-blue-400 to-indigo-500 bg-clip-text text-transparent dark:from-blue-300 dark:to-indigo-400">
-                      {item.title}
-                    </h3>
-                    <p className="text-sm text-zinc-700 dark:text-zinc-300">
-                      {item.description}
-                    </p>
-                  </div>
-                  
-                  {/* Interactive Button */}
-                  <motion.button
-                    className="mt-4 px-4 py-2 rounded-full bg-gradient-to-r from-blue-500 to-indigo-600 text-white text-sm font-medium flex items-center justify-center gap-2 group overflow-hidden relative"
-                    whileHover={{ scale: 1.03 }}
-                    whileTap={{ scale: 0.97 }}
-                  >
-                    <span className="relative z-10">Explore</span>
-                    <span className="absolute top-0 right-0 w-12 h-full bg-white/20 skew-x-[-18deg] transform -translate-x-36 group-hover:translate-x-36 transition-transform duration-700"></span>
-                  </motion.button>
-                </div>
-                
-                {/* Decorative Elements */}
-                <div className="absolute bottom-3 left-3 w-12 h-1 rounded-full bg-gradient-to-r from-blue-400/40 to-indigo-500/40"></div>
-                <div className="absolute top-3 left-3 w-1 h-12 rounded-full bg-gradient-to-b from-blue-400/40 to-indigo-500/40"></div>
-              </motion.div>
-            );
-          })}
+          {carouselItems.map((item, index) => (
+            <CarouselItem
+              key={`${item.id}-${index}`}
+              item={item}
+              index={index}
+              x={x}
+              itemWidth={itemWidth}
+              trackItemOffset={trackItemOffset}
+              effectiveTransition={effectiveTransition}
+            />
+          ))}
         </motion.div>
         
         {/* Enhanced Indicators */}

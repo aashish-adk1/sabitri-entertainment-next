@@ -7,7 +7,6 @@ import {
   Target, 
   Award, 
   Star, 
-  Clock, 
   CheckCircle, 
   ArrowRight,
   ChevronRight
@@ -17,12 +16,12 @@ import {
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import Image from 'next/image';
 
 export default function AboutUsPage() {
   const [scrollY, setScrollY] = useState(0);
   const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
   const [mounted, setMounted] = useState(false);
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   useEffect(() => {
     setMounted(true);
@@ -106,34 +105,7 @@ export default function AboutUsPage() {
     }
   ];
 
-  // Milestones data for timeline
-  const milestones = [
-    {
-      year: "2018",
-      title: "Company Founded",
-      description: "Sabitri Entertainment was established with a vision to transform digital experiences"
-    },
-    {
-      year: "2019",
-      title: "First Major Client",
-      description: "Secured partnership with a leading brand, marking our entry into the enterprise market"
-    },
-    {
-      year: "2020",
-      title: "Expanded Services",
-      description: "Added mobile app development and digital marketing to our core service offerings"
-    },
-    {
-      year: "2022",
-      title: "International Expansion",
-      description: "Opened our first international office to serve clients across multiple regions"
-    },
-    {
-      year: "2024",
-      title: "Industry Recognition",
-      description: "Received multiple awards for innovation and excellence in digital solutions"
-    }
-  ];
+  
 
   // Animation variants
   const fadeInUp = {
@@ -245,7 +217,8 @@ export default function AboutUsPage() {
           className="relative w-full h-64 md:h-96 rounded-2xl overflow-hidden shadow-2xl shadow-indigo-900/30 border border-gray-800"
         >
           <div className="absolute inset-0 bg-gradient-to-br from-indigo-900/20 via-purple-900/20 to-pink-900/20 backdrop-blur-sm"></div>
-          <img 
+          <Image
+          fill
             src="https://plus.unsplash.com/premium_photo-1670315264879-59cc6b15db5f" 
             alt="Our Headquarter" 
             className="w-full h-full object-cover opacity-60 mix-blend-luminosity"
@@ -357,7 +330,8 @@ export default function AboutUsPage() {
               className="relative group"
             >
               <div className="relative overflow-hidden rounded-xl aspect-square shadow-lg shadow-indigo-900/30 border border-gray-800">
-                <img 
+                <Image
+                fill 
                   src={member.image} 
                   alt={member.name} 
                   className="w-full h-full object-cover opacity-60 group-hover:opacity-75 mix-blend-overlay transition-opacity duration-300"
@@ -449,7 +423,8 @@ export default function AboutUsPage() {
           >
             <div className="relative h-80 md:h-96 rounded-2xl overflow-hidden border border-gray-800 shadow-2xl shadow-purple-900/20">
               <div className="absolute inset-0 bg-gradient-to-br from-indigo-900/30 via-purple-900/30 to-pink-900/30 backdrop-blur-sm"></div>
-              <img 
+              <Image
+              fill 
                 src="https://plus.unsplash.com/premium_photo-1663040303769-cd3ee2dfb172" 
                 alt="Our Office" 
                 className="w-full h-full object-cover opacity-70 mix-blend-overlay"
@@ -638,7 +613,7 @@ export default function AboutUsPage() {
                   </div>
                   
                   <div className="flex-1">
-                    <p className="text-lg text-gray-300 italic mb-6">"{testimonial.quote}"</p>
+                    <p className="text-lg text-gray-300 italic mb-6">&quot;{testimonial.quote}&quot;</p>
                     <div>
                       <h4 className="text-xl font-bold">{testimonial.name}</h4>
                       <p className="text-gray-400">{testimonial.role}</p>

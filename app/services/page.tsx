@@ -8,7 +8,7 @@ import { motion } from 'framer-motion';
 // Shadcn UI components
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Tabs,TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 export default function ServicesPage() {
   const [scrollY, setScrollY] = useState(0);
@@ -371,7 +371,7 @@ export default function ServicesPage() {
             <div className="mb-8 md:mb-0 md:mr-8">
               <h2 className="text-2xl md:text-3xl font-bold mb-4">Ready to transform your digital presence?</h2>
               <p className="text-gray-300 max-w-xl">
-                Let's discuss how our services can help your business reach its full potential in the digital landscape.
+                Let&apos;s discuss how our services can help your business reach its full potential in the digital landscape.
               </p>
             </div>
             

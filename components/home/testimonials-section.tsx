@@ -195,7 +195,7 @@ const TestimonialsSection = () => {
             variants={titleVariants}
             className="text-lg text-zinc-600 dark:text-zinc-300 leading-relaxed"
           >
-            Don't just take our word for it. Here's what our users have to say about their experience with Sabitri Entertainment.
+            Don&apos;t just take our word for it. Here&apos;s what our users have to say about their experience with Sabitri Entertainment.
           </motion.p>
         </div>
         

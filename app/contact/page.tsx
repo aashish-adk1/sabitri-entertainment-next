@@ -72,11 +72,7 @@ export default function ContactPage() {
     visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
   };
 
-  // Hover effect for card
-  const cardHover = {
-    rest: { scale: 1, y: 0 },
-    hover: { scale: 1.03, y: -5, transition: { duration: 0.3, ease: "easeOut" } }
-  };
+
 
   // Contact info items
   const contactItems = [
@@ -210,7 +206,7 @@ export default function ContactPage() {
             className="inline-flex items-center px-3 py-1 mb-6 rounded-full bg-indigo-900/40 border border-indigo-700/60 text-indigo-300 backdrop-blur-sm"
           >
             <span className="animate-pulse mr-2 h-2 w-2 rounded-full bg-indigo-400"></span>
-            We'd love to hear from you
+            We&apos;d love to hear from you
           </motion.div>
           
           <motion.h1 
@@ -224,7 +220,7 @@ export default function ContactPage() {
             variants={fadeInUp}
             className="text-lg max-w-2xl mx-auto text-gray-300 mb-8"
           >
-            Have questions about our services? Ready to start your project? Reach out to our team and we'll get back to you within 24 hours.
+            Have questions about our services? Ready to start your project? Reach out to our team and we&apos;ll get back to you within 24 hours.
           </motion.p>
         </motion.div>
       </motion.div>
@@ -237,7 +233,7 @@ export default function ContactPage() {
       style={{ transform: `translateY(${-contentOffset}px)` }}
     >
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        {contactItems.map((item, index) => (
+        {contactItems.map((item) => (
           <div
             key={item.id}
             className="opacity-100 transition-transform duration-300 hover:-translate-y-1"
@@ -262,9 +258,7 @@ export default function ContactPage() {
                   {item.info}
                 </p>
                 
-                <p className="text-sm text-gray-400 break-words overflow-wrap-anywhere">
-                  {item.description}
-                </p>
+                <p className="text-sm text-gray-400 break-words overflow-wrap-anywhere">We&apos;ve helped hundreds of clients.</p>
               </CardContent>
             </Card>
           </div>
@@ -399,7 +393,7 @@ export default function ContactPage() {
                     animate={{ opacity: 1, y: 0 }}
                     className="mt-4 p-3 rounded-md bg-green-900/50 border border-green-700 text-green-300 text-sm"
                   >
-                    Thank you! Your message has been sent successfully. We'll get back to you soon.
+                    Thank you! Your message has been sent successfully. We&apos;ll get back to you soon.
                   </motion.div>
                 )}
               </div>
@@ -473,7 +467,7 @@ export default function ContactPage() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-lg text-gray-300 mb-8 max-w-2xl mx-auto"
           >
-            Let's transform your ideas into reality. Our team of experts is ready to help you achieve your digital goals.
+            Let&apos;s transform your ideas into reality. Our team of experts is ready to help you achieve your digital goals.
           </motion.p>
           
           <motion.div 

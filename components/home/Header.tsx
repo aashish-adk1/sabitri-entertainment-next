@@ -1,22 +1,9 @@
 "use client";
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
-import { useTheme } from 'next-themes';
 import { 
-  Rocket, 
   Menu, 
   X, 
-  ChevronDown, 
-  Layers, 
-  BarChart2, 
-  PieChart,
-  Sun,
-  Moon,
-  Sparkles,
-  MousePointer,
-  Home,
-  Users,
-  Mail
 } from 'lucide-react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -26,13 +13,8 @@ const Header = () => {
   // States
   const [menuState, setMenuState] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [hoveredItem, setHoveredItem] = useState(null);
-  const [mounted, setMounted] = useState(false);
-  const [activeSubmenu, setActiveSubmenu] = useState<number | null>(null);
-  const { theme, setTheme } = useTheme();
   
   // Refs
-  const submenuRef = useRef(null);
   const headerRef = useRef<HTMLDivElement>(null);
 
   // Navigation data
@@ -44,7 +26,6 @@ const Header = () => {
   ];
 
   useEffect(() => {
-    setMounted(true);
 
     const handleScroll = () => {
       setScrolled(window.scrollY > 10);
@@ -52,7 +33,6 @@ const Header = () => {
 
     const handleClickOutside = (event: MouseEvent) => {
       if (headerRef.current && !headerRef.current.contains(event.target as Node)) {
-        setActiveSubmenu(null);
       }
     };
 
@@ -65,20 +45,6 @@ const Header = () => {
     };
   }, []);
 
-  // Close mobile menu when clicking a link
-  const handleMenuItemClick = () => {
-    setMenuState(false);
-    setActiveSubmenu(null);
-  };
-
-  // Toggle theme with animation
-  const toggleTheme = () => {
-    setTheme(theme === "light" ? "dark" : "light");
-  };
-
-  const handleSubmenuToggle = (index: number) => {
-    setActiveSubmenu(activeSubmenu === index ? null : index);
-  };
 
   return (
     <header className="relative z-1000" ref={headerRef}>
