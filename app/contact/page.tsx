@@ -430,7 +430,7 @@ export default function ContactPage() {
                 <h4 className="font-bold text-lg mb-2 text-indigo-300">Sabitri Reading Room</h4>
                 <p className="text-gray-300 mb-1 flex items-center">
                   <MapPin className="w-4 h-4 mr-2 text-indigo-400" />
-                  Shantinagar, Kathmandu, Nepal
+                  Kalash Complex, Suncity, Pepsicola
                 </p>
                 <p className="text-gray-400 text-sm">
                   Visit us in person to discover our wide selection of books and peaceful reading environment.
