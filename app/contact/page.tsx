@@ -412,7 +412,7 @@ export default function ContactPage() {
               <div className="absolute -bottom-10 -right-10 w-40 h-40 rounded-full bg-blue-900/20 filter blur-3xl"></div>
               <div className="absolute -top-10 -left-10 w-40 h-40 rounded-full bg-indigo-900/20 filter blur-3xl"></div>
               
-              {/* Google Maps iframe with Sabitri Reading Room location */}
+              {/* Google Maps iframe with Sabitri Entertainment location */}
               <div className="h-64 w-full relative z-10">
                 <iframe 
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3532.6429480553826!2d85.36787201549812!3d27.69353367620431!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb1b50cb347f1f%3A0x73c05143e3a8b2df!2sSabitri%20Reading%20Room!5e0!3m2!1sen!2sus!4v1621234567890!5m2!1sen!2sus" 
@@ -421,13 +421,13 @@ export default function ContactPage() {
                   allowFullScreen={true}
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
-                  title="Sabitri Reading Room Location"
+                  title="Sabitri Entertainment Location"
                 />
               </div>
               
               {/* Location Info Below Map */}
               <div className="p-4 border-t border-gray-800">
-                <h4 className="font-bold text-lg mb-2 text-indigo-300">Sabitri Reading Room</h4>
+                <h4 className="font-bold text-lg mb-2 text-indigo-300">Sabitri Entertainment</h4>
                 <p className="text-gray-300 mb-1 flex items-center">
                   <MapPin className="w-4 h-4 mr-2 text-indigo-400" />
                   Kalash Complex, Suncity, Pepsicola
