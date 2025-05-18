@@ -1,8 +1,7 @@
 "use client";
 import React, { useEffect, useRef } from 'react';
 import { motion, useAnimation, useInView } from 'framer-motion';
-import { Star, Quote, ArrowRight, Link } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { Star, Quote,} from 'lucide-react';
 
 interface Testimonial {
   quote: string;

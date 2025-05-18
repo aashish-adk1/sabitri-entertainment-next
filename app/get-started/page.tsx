@@ -206,7 +206,7 @@ export default function GetStartedPage() {
                     variants={fadeInUp}
                     className="text-lg max-w-3xl text-gray-300 mb-10"
                 >
-                    We're excited to partner with you on your digital transformation journey. Our streamlined process makes it easy to turn your vision into reality while keeping you informed every step of the way.
+                    We&apos;re excited to partner with you on your digital transformation journey. Our streamlined process makes it easy to turn your vision into reality while keeping you informed every step of the way.
                 </motion.p>
 
                 <motion.div
@@ -458,7 +458,7 @@ export default function GetStartedPage() {
                 </div>
 
                 <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                    Let's Transform Your <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400">Digital Presence</span> Together
+                    Let&apos;s Transform Your <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400">Digital Presence</span> Together
                 </h2>
 
                 <p className="text-lg max-w-2xl mx-auto text-gray-300 mb-10">
