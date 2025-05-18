@@ -400,7 +400,7 @@ export default function AboutUsPage() {
               transition={{ duration: 0.5, delay: 0.5 }}
               className="mt-8"
             >
-              <Link href="#contact" passHref>
+              <Link href="/contact" passHref>
               <Button
                 size="lg" 
                 className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white border-none shadow-lg shadow-indigo-900/50 text-lg px-8 group"
@@ -501,7 +501,7 @@ export default function AboutUsPage() {
               Connect with our team to discuss how we can help you achieve your business goals through innovative digital solutions.
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <Link href="#contact" passHref>
+              <Link href="/contact" passHref>
               <Button
                 size="lg" 
                 className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white border-none shadow-lg shadow-indigo-900/50 text-lg px-8 group"

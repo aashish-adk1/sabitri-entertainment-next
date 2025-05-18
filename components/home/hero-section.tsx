@@ -199,7 +199,7 @@ export default function HeroPage() {
             variants={fadeInUp}
             className="flex flex-col sm:flex-row gap-4 pt-4"
           >
-            <Link href="#services">
+            <Link href="/services">
             <Button
               size="lg" 
               className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white border-none shadow-lg shadow-indigo-900/50 text-lg px-8 group"
@@ -215,7 +215,7 @@ export default function HeroPage() {
             </Button>
             </Link>
             
-            <Link href="#contact">
+            <Link href="/contact">
             <Button 
               variant="outline" 
               size="lg" 
@@ -425,7 +425,7 @@ export default function HeroPage() {
           transition={{ duration: 0.5, delay: 0.8 }}
           className="mt-16 text-center"
         >
-          <Link href="#services">
+          <Link href="/services">
           <Button className="group px-8 flex items-center bg-transparent border border-indigo-700/50 hover:bg-indigo-900/30 text-indigo-300">
             <span>View All Services</span>
             <motion.div
