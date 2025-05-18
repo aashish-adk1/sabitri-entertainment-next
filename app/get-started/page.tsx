@@ -213,7 +213,7 @@ export default function GetStartedPage() {
                     variants={fadeInUp}
                     className="flex flex-col sm:flex-row gap-4"
                 >
-                    <Link href="/contact">
+                    <Link href="#contact">
                         <Button
                             size="lg"
                             className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white border-none shadow-lg shadow-indigo-900/50 px-8 text-lg group"
@@ -313,7 +313,7 @@ export default function GetStartedPage() {
                                                 {step.title}
                                             </h3>
                                             <p className="text-gray-300 mb-6">{step.description}</p>
-                                            <Link href="/contact">
+                                            <Link href="#contact">
                                                 <Button className="group" style={{ backgroundColor: step.color }}>
                                                     <span>Start This Step</span>
                                                     <motion.div
@@ -395,7 +395,7 @@ export default function GetStartedPage() {
                                             ))}
                                         </ul>
 
-                                        <Link href="/contact">
+                                        <Link href="#contact">
                                             <Button className="w-full md:w-auto group" style={{ backgroundColor: step.color }}>
                                                 <span>Start This Step</span>
                                                 <motion.div
@@ -465,7 +465,7 @@ export default function GetStartedPage() {
                     Contact us today to schedule your free consultation and start your journey with Sabitri Entertainment
                 </p>
                 <div className="flex flex-col sm:flex-row justify-center gap-4">
-                    <Link href={"/contact"} className="inline-block">
+                    <Link href={"#contact"} className="inline-block">
                         <Button
                             size="lg"
                             className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white shadow-lg shadow-indigo-900/50 px-8 text-lg"
