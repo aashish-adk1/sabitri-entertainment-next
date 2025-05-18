@@ -2,7 +2,7 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
-    domains: ['sabitrientertainment.com','unsplash.com','randomuser.me'], // Replace with the domain you're using
+    domains: ['sabitrientertainment.com','unsplash.com','randomuser.me','plus.unsplash.com'], // Replace with the domain you're using
   },
 };
 
