@@ -376,6 +376,7 @@ export default function ServicesPage() {
             </div>
             
             <div className="flex flex-col sm:flex-row gap-4">
+              <Link href={"/contact"}>
               <Button
                 size="lg" 
                 className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white border-none shadow-lg shadow-indigo-900/50 px-8 group"
@@ -389,6 +390,7 @@ export default function ServicesPage() {
                   <ChevronRight className="ml-2 h-5 w-5" />
                 </motion.div>
               </Button>
+              </Link>
               
               <Button 
                 variant="outline" 

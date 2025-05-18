@@ -258,7 +258,6 @@ export default function ContactPage() {
                   {item.info}
                 </p>
                 
-                <p className="text-sm text-gray-400 break-words overflow-wrap-anywhere">We&apos;ve helped hundreds of clients.</p>
               </CardContent>
             </Card>
           </div>

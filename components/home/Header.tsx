@@ -106,9 +106,11 @@ const Header = () => {
             
             {/* CTA Button */}
             <div className="hidden md:block">
+              <Link href={"/get-started"}>
               <Button className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white border-none shadow-lg shadow-indigo-900/30 font-medium">
                 Get Started
               </Button>
+              </Link>
             </div>
           </div>
         </div>
